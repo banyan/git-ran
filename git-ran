@@ -13,7 +13,7 @@ case $SHELL in
 */zsh)
    command=$(tail "$HOME/.zsh_history" | \
        awk -v 'FS=;' '{print $2}' |
-       grep -v -E $pattern | \
+       grep -v -E "$pattern" | \
        tail -n 1)
    ;;
 *)
