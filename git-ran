@@ -1,0 +1,15 @@
+#!/bin/bash
+
+filename=`basename "$0"`
+
+case $SHELL in
+*/zsh)
+   command=`tail $HOME/.zsh_history | grep -v $filename | tail -n 1 | awk -v 'FS=;' '{print $2}'`
+   ;;
+*)
+  echo "$filename only supports zsh for now"
+  exit 1
+esac
+
+git add .
+git commit -e -v -m "$command"
