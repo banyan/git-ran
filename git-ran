@@ -5,7 +5,7 @@ filename=`basename "$0"`
 case $SHELL in
 */zsh)
    command=`tail $HOME/.zsh_history | \
-       grep -v -E 'git(\s+|-)ran' | \
+       grep -v -E '^git' | \
        tail -n 1 | \
        awk -v 'FS=;' '{print $2}'`
    ;;
