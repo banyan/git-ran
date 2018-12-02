@@ -1,11 +1,18 @@
 #!/bin/bash
 
 filename=$(basename "$0")
+pattern='^git(\s+|-)ran'
+
+# Parse option: https://stackoverflow.com/a/33826763/225291
+while [[ "$#" -gt 0 ]]; do case $1 in
+  -e) pattern="$2"; shift;;
+  *) echo "Unknown parameter passed: $1"; exit 1;;
+esac; shift; done
 
 case $SHELL in
 */zsh)
    command=$(tail "$HOME/.zsh_history" | \
-       grep -v -E '^git' | \
+       grep -v -E $pattern | \
        tail -n 1 | \
        awk -v 'FS=;' '{print $2}')
    ;;
