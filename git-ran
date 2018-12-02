@@ -22,4 +22,4 @@ case $SHELL in
 esac
 
 git add .
-git commit -e -v -m "$command"
+git commit -v -m "$command"
