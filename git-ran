@@ -12,9 +12,9 @@ esac; shift; done
 case $SHELL in
 */zsh)
    command=$(tail "$HOME/.zsh_history" | \
+       awk -v 'FS=;' '{print $2}' |
        grep -v -E $pattern | \
-       tail -n 1 | \
-       awk -v 'FS=;' '{print $2}')
+       tail -n 1)
    ;;
 *)
   echo "$filename only supports zsh for now"
